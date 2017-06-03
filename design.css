@@ -1,0 +1,54 @@
+body{
+	background-image: url(backgrnd/EarthHorizon.jpg);
+	background-size: cover; 
+	background-repeat: no-repeat;
+}
+h1{
+	font-size: 5em;
+	color: white;
+	font-family: 'Montserrat Subrayada', cursive;
+
+}
+button{
+	height: 40px;
+	font-size: larger;
+}
+
+p{
+	font-family: 'Modak', cursive;
+	/*background-color: rgba(1000,1000,1000,0.6);*/
+	border-radius: 4px;
+	width: 50%;
+	margin: 0 auto;
+	color: black;
+	font-size: 40px;
+	text-align: center;
+}
+#add{
+	font-size: 80px;
+}
+footer{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background: -webkit-linear-gradient(left ,rgba(40,58,84,1),rgba(250,250,250,0),rgba(0,0,0,0));
+}
+
+img.a1{
+	max-width: 10%;
+}
+img.a2{
+	float: right;
+	max-width: 4%;
+}
+a:visited{
+	color: black;
+	text-decoration: none;
+}
+span.dev{
+	font-family: 'Acme', sans-serif;
+	font-size: 23px;
+	float: right;
+	margin-right: 20px;
+	margin-left: 20px;
+}

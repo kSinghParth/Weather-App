@@ -1,52 +1,25 @@
 <html>
 <head>
-<script type="text/javascript">
-function yolo(){
-	if(navigator.geolocation){
-		navigator.geolocation.getCurrentPosition(showPosition,showError);
-	}
-	else{
-		alert('Geolocation Not Supported by the Browser');
-		document.getElementById('weather').innerHTML+="<br/> Geolocation Not Supported by the Browser";
-	}
-	function showPosition(position){
-		var lat=position.coords.latitude;
-		var lon=position.coords.longitude;
-		if(window.XMLHttpRequest){
+<link href="https://fonts.googleapis.com/css?family=Montserrat+Subrayada" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Modak" rel="stylesheet">
 
-			var xhr=new XMLHttpRequest();
-			xhr.addEventListener('load',function(){
-					var response=JSON.parse(xhr.responseText);
-					var temp=response.currently.temperature;
-					var weather=response.currently.summary;
-					var wind=response.currently.windSpeed;
-					document.getElementById('weather').innerHTML=weather;
-					document.getElementById('temp').innerHTML=temp;
-					document.getElementById('wind').innerHTML=wind;
-			} ,false);
-			xhr.addEventListener('error',function(){
-					document.getElementById('weather').innerHTML+="Could Not Complete REquest";
-			} ,false);
+<link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
 
-			xhr.open('GET','https://api.darksky.net/forecast/9a9ae7dc3fae15ff0f44ef95f0c70d00/'+lat+','+lon,true);
-			xhr.send();
-		}
-		else{
-			alert('Unable to fetch the weather');
-			document.getElementById('weather').innerHTML+="<br/> Unable to fetch the weather";
-		}
-	}
-	function showError(error){
-		document.getElementById('weather').innerHTML='ERROR CODE :'+error.code+'<br />'+error.message;
-	}
-}
-</script>
+
+<link rel="stylesheet" type="text/css" href="design.css">
+<script type="text/javascript" src="backend.js"></script>
 </head>
-<body>
+<body class="bg">
 <h1>Weather App</h1>
 <button id="check" onclick="yolo()">Check Weather at my location</button>
-<p id="weather"></p>
-<p id="temp"></p>
-<p id="wind"></p>
+<p id="add">Dehradun</p><br>
+<p id="weather">Rain</p>
+<p id="temp">43</p><br>
+<p id="wind">23</p>
+<footer><a href="https://darksky.net/poweredby/" target="blank"><img class="a1" src="https://darksky.net/dev/img/attribution/poweredby.png"></a>
+<a href="https://ksinghparth.github.io">
+<span class="dev">Developed by <br><strong>Parth Singh</strong></span>
+<img class="a2" src="ps.svg"></a></footer>
+
 </body>
 </html>
