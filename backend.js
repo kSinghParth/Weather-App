@@ -20,11 +20,11 @@ function yolo(){
 					var wind=response.currently.windSpeed;
 					getAddress(lat, lon);
 					document.getElementById('weather').innerHTML=weather;
-					document.getElementById('temp').innerHTML=temp;
+					document.getElementById('temp').innerHTML=Math.round(temp*10)/10;
 					document.getElementById('wind').innerHTML=wind;
 			} ,false);
 			xhr.addEventListener('error',function(){
-					document.getElementById('weather').innerHTML+="Could Not Complete REquest";
+					document.getElementById('weather').innerHTML+="Could Not Complete Request";
 			} ,false);
 
 			xhr.open('GET','https://api.darksky.net/forecast/9a9ae7dc3fae15ff0f44ef95f0c70d00/'+lat+','+lon,true);
@@ -36,9 +36,10 @@ function yolo(){
 		}
 	}
 	function showError(error){
-		document.getElementById('weather').innerHTML='ERROR CODE :'+error.code+'<br />'+error.message;
+		document.getElementById('weather').innerHTML='ERROR CODE :'+error.code+error.message;
 	}
 	document.getElementById("check").innerHTML='Try Again';
+	document.getElementById('contain').style.display='block';
 
 }
 function getAddress (latitude, longitude) {
@@ -49,7 +50,7 @@ function getAddress (latitude, longitude) {
             if (request.readyState == 4) {
                 if (request.status == 200) {
                     var data = JSON.parse(request.responseText);
-                    var address = data.results[0].address_components[3].long_name;
+                    var address = data.results[0].address_components[4].long_name+', '+data.results[0].address_components[5].short_name+', '+data.results[0].address_components[6].short_name;
                     document.getElementById('add').innerHTML=address;
                 }
                 
@@ -58,3 +59,25 @@ function getAddress (latitude, longitude) {
         request.send();
     
 }
+
+function convert(){
+	var ele=document.getElementById('change'); 
+	var temp=document.getElementById('temp').innerHTML;
+
+	if (ele.value=='f') {
+			document.getElementById('temp').innerHTML=Math.round((temp - 32) * 5 / 9*10)/10;
+			document.getElementById('units').innerHTML='&#8451';
+			document.getElementById('change').value='c';
+			document.getElementById('change').innerHTML='&#8457';
+	}
+	else
+	{
+		document.getElementById('temp').innerHTML=Math.round(((temp  * 9 / 5)+32)*10)/10;
+			document.getElementById('units').innerHTML='&#8457';
+			document.getElementById('change').value='f';
+			document.getElementById('change').innerHTML='&#8451';
+	}
+}
+
+
+

@@ -1,25 +1,46 @@
 <html>
 <head>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Montserrat+Subrayada" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Modak" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Modak" rel="stylesheet"> -->
 
 <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
 
 
 <link rel="stylesheet" type="text/css" href="design.css">
 <script type="text/javascript" src="backend.js"></script>
+
 </head>
 <body class="bg">
 <h1>Weather App</h1>
 <button id="check" onclick="yolo()">Check Weather at my location</button>
-<p id="add">Dehradun</p><br>
-<p id="weather">Rain</p>
-<p id="temp">43</p><br>
-<p id="wind">23</p>
+<br><div id="contain" >
+<p class="add"><i class="material-icons">navigation</i><span id="add"></span></p><br>
+<p id="iconsky"></p>
+<p id="sum"></p><br>
+
+<p id="weather"></p><br>
+<p class="temp"><span id="temp"></span><span id="units" class="unit">&#8457</span><button id="change" onclick="convert()" value="f">&#8451  </button>
+</p>
+<p id="wind"></p>
+
+</div>
 <footer><a href="https://darksky.net/poweredby/" target="blank"><img class="a1" src="https://darksky.net/dev/img/attribution/poweredby.png"></a>
 <a href="https://ksinghparth.github.io">
 <span class="dev">Developed by <br><strong>Parth Singh</strong></span>
 <img class="a2" src="ps.svg"></a></footer>
-
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/skycons/1396634940/skycons.min.js'></script>
+<script type="text/javascript">
+	var skycon=new Skycons({
+				"color" : "#FFFFFF",
+				"resizeClear": true // nasty android hack
+			});
+ skycon.set(document.getElementById('iconsky'),'rain');
+ skycon.play();
+</script>
 </body>
 </html>
