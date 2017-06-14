@@ -83,12 +83,13 @@ function convert(){
 function ldbkg(lat,lon,weather){
 	if (window.XMLHttpRequest) {
 			var xhr=new XMLHttpRequest();
-			xhr.open('GET','https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=2ed4f670f5b13fd9ae8590157b50e74b&tags=DEHRADUN,storm&sort=relevance&extras=url_l&format=json&nojsoncallback=1',true);
+			xhr.open('GET','https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=2ed4f670f5b13fd9ae8590157b50e74b&lat='+lat+'&lon='+lon+'&accuracy=6&tags='+weather+'&sort=relevance&extras=url_l&format=json&nojsoncallback=1',true);
 			
 			xhr.addEventListener('load',function(){
 						var response=JSON.parse(xhr.responseText);	
-						document.querySelector("body").style.backgroundImage="url('" + response.photos.photo[1].url_l + "')"
-						
+						if (response.photos.pages>0) {
+						document.querySelector("body").style.backgroundImage="url('" + response.photos.photo[0].url_l + "')";
+						}
 				},false);
 			
 			xhr.send();
