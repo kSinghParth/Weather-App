@@ -14,6 +14,7 @@ function yolo(){
 
 			var xhr=new XMLHttpRequest();
 			xhr.addEventListener('load',function(){
+				
 					var response=JSON.parse(xhr.responseText);
 					var temp=response.currently.temperature;
 					var weather=response.currently.summary;
@@ -22,6 +23,7 @@ function yolo(){
 					document.getElementById('weather').innerHTML=weather;
 					document.getElementById('temp').innerHTML=Math.round(temp*10)/10;
 					document.getElementById('wind').innerHTML=wind;
+					ldbkg(lat,lon,weather);
 			} ,false);
 			xhr.addEventListener('error',function(){
 					document.getElementById('weather').innerHTML+="Could Not Complete Request";
@@ -78,6 +80,18 @@ function convert(){
 			document.getElementById('change').innerHTML='&#8451';
 	}
 }
-
-
+function ldbkg(lat,lon,weather){
+	if (window.XMLHttpRequest) {
+			var xhr=new XMLHttpRequest();
+			xhr.open('GET','https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=2ed4f670f5b13fd9ae8590157b50e74b&tags=DEHRADUN,storm&sort=relevance&extras=url_l&format=json&nojsoncallback=1',true);
+			
+			xhr.addEventListener('load',function(){
+						var response=JSON.parse(xhr.responseText);	
+						document.querySelector("body").style.backgroundImage="url('" + response.photos.photo[1].url_l + "')"
+						
+				},false);
+			
+			xhr.send();
+		}
+}
 

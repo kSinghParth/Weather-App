@@ -39,7 +39,10 @@ p.add i{
 	right: 130px;
 
 }
- #wind{
+#speedu{
+	font-size: 25px;
+}
+ #windsp{
  	position: absolute;;
 	top: 150px;
 	right: 130px;
