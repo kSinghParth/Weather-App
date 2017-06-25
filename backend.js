@@ -83,12 +83,15 @@ function convert(){
 function ldbkg(lat,lon,weather){
 	if (window.XMLHttpRequest) {
 			var xhr=new XMLHttpRequest();
-			xhr.open('GET','https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=2ed4f670f5b13fd9ae8590157b50e74b&lat='+lat+'&lon='+lon+'&accuracy=6&tags='+weather+'&sort=relevance&extras=url_l&format=json&nojsoncallback=1',true);
-			
+			var url_f='https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=2ed4f670f5b13fd9ae8590157b50e74b&lat='+lat+'&lon='+lon+'&accuracy=3&tags='+weather+',wild,nature,wildlife,weather,mountains,trek,outdoor,monument,wild&sort=relevance&extras=url_l&format=json&nojsoncallback=1';
+			alert(url_f);
+			xhr.open('GET',url_f,true);
 			xhr.addEventListener('load',function(){
 						var response=JSON.parse(xhr.responseText);	
+						console.log(response);
 						if (response.photos.pages>0) {
-						document.querySelector("body").style.backgroundImage="url('" + response.photos.photo[0].url_l + "')";
+						document.body.style.backgroundImage="url('" + response.photos.photo[0].url_l + "')";
+						
 						}
 				},false);
 			
