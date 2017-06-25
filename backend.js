@@ -26,7 +26,7 @@ function yolo(){
 					ldbkg(lat,lon,weather);
 			} ,false);
 			xhr.addEventListener('error',function(err){
-					document.getElementById('weather').innerHTML+="Could Not Complete Request"+err;
+					document.getElementById('weather').innerHTML+="Could Not Complete Request"+xhr.readyState+" "+xhr.status;
 			} ,false);
 
 			xhr.open('GET','https://api.darksky.net/forecast/9a9ae7dc3fae15ff0f44ef95f0c70d00/'+lat+','+lon,true);
