@@ -1,3 +1,4 @@
+
 function yolo(){
 
 	if(navigator.geolocation){
@@ -8,15 +9,12 @@ function yolo(){
 		document.getElementById('weather').innerHTML+="<br/> Geolocation Not Supported by the Browser";
 	}
 	function showPosition(position){
+
 		var lat=position.coords.latitude;
 		var lon=position.coords.longitude;
-		if(window.XMLHttpRequest){
-
-			var xhr=new XMLHttpRequest();
-			xhr.addEventListener('load',function(){
-				
-					var response=JSON.parse(xhr.responseText);
-					var temp=response.currently.temperature;
+		var api='https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/d2eaa84ff9df78a9bddacfcd32cabfb7/'+lat+','+lon;
+		$.getJSON(api, function(response) {
+			var temp=response.currently.temperature;
 					var weather=response.currently.summary;
 					var wind=response.currently.windSpeed;
 					getAddress(lat, lon);
@@ -24,18 +22,31 @@ function yolo(){
 					document.getElementById('temp').innerHTML=Math.round(temp*10)/10;
 					document.getElementById('wind').innerHTML=wind;
 					ldbkg(lat,lon,weather);
-			} ,false);
-			xhr.addEventListener('error',function(err){
-					document.getElementById('weather').innerHTML+="Could Not Complete Request"+xhr.readyState+" "+xhr.status;
-			} ,false);
+		});
+		// if(window.XMLHttpRequest){
+		// 	var xhr=new XMLHttpRequest();
+		// 	xhr.addEventListener('load',function(){		
+		// 			var response=JSON.parse(xhr.responseText);
+		// 			var temp=response.currently.temperature;
+		// 			var weather=response.currently.summary;
+		// 			var wind=response.currently.windSpeed;
+		// 			getAddress(lat, lon);
+		// 			document.getElementById('weather').innerHTML=weather;
+		// 			document.getElementById('temp').innerHTML=Math.round(temp*10)/10;
+		// 			document.getElementById('wind').innerHTML=wind;
+		// 			ldbkg(lat,lon,weather);
+		// 	} ,true);
+		// 	xhr.addEventListener('error',function(err){
+		// 			document.getElementById('weather').innerHTML+="Could Not Complete Request"+xhr.readyState+" "+xhr.status;
+		// 	} ,false);
 
-			xhr.open('GET','https://api.darksky.net/forecast/9a9ae7dc3fae15ff0f44ef95f0c70d00/'+lat+','+lon,true);
-			xhr.send();
-		}
-		else{
-			alert('Unable to fetch the weather');
-			document.getElementById('weather').innerHTML+="<br/> Unable to fetch the weather";
-		}
+		// 	xhr.open('GET','https://api.darksky.net/forecast/d2eaa84ff9df78a9bddacfcd32cabfb7/'+lat+','+lon,true);
+		// 	xhr.send();
+		// }
+		// else{
+		// 	alert('Unable to fetch the weather');
+		// 	document.getElementById('weather').innerHTML+="<br/> Unable to fetch the weather";
+		// }
 	}
 	function showError(error){
 		document.getElementById('weather').innerHTML='ERROR CODE :'+error.code+error.message;
@@ -84,7 +95,7 @@ function ldbkg(lat,lon,weather){
 	if (window.XMLHttpRequest) {
 			var xhr=new XMLHttpRequest();
 			var url_f='https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=2ed4f670f5b13fd9ae8590157b50e74b&lat='+lat+'&lon='+lon+'&accuracy=3&tags='+weather+',wild,nature,wildlife,weather,mountains,trek,outdoor,monument,wild&sort=relevance&extras=url_l&format=json&nojsoncallback=1';
-			alert(url_f);
+			// alert(url_f);
 			xhr.open('GET',url_f,true);
 			xhr.addEventListener('load',function(){
 						var response=JSON.parse(xhr.responseText);	
