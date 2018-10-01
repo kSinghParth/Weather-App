@@ -4,13 +4,13 @@ body{
 	background-repeat: no-repeat;
 }
 h1{
-	font-size: 4em;
+	font-size: 5em;
 	color: white;
 	font-family: 'Montserrat Subrayada', cursive;
 
 }
 #check{
-	height: 40px;
+	height: 41px;
 	font-size: larger;
 }
 div{
