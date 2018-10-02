@@ -94,10 +94,11 @@ a:visited{
 	text-decoration: none;
 }
 span.dev{
-	color: black;
+	
 	font-family: 'Acme', sans-serif;
 	font-size: 23px;
 	float: right;
 	margin-right: 20px;
-	margin-left: 20px;
+	margin-left: 20px;q
+	color: black;
 }
